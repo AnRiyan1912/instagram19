@@ -6,6 +6,8 @@ const app = express();
 app.use(express.json());
 const db = require("./models/");
 const cors = require("cors");
+const barreltoken = require("express-bearer-token")
+
 app.use(cors());
 
 app.use("/auth", authRoutes);

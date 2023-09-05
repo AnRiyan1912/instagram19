@@ -90,7 +90,7 @@ class Auth extends Entity {
               1000
             } sec`
           );
-
+            console.log(result.suspended_date)
         const isValid = await bcrypt.compare(password, result.password);
 
         if (!isValid) {
