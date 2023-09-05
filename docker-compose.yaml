@@ -1,0 +1,31 @@
+version: "3.8"
+
+networks:
+  node-api-network:
+    name: node-api-network
+
+services:
+  mysql_server:
+    image: mysql:8.0
+    ports:
+      - "4403:3306"
+    environment:
+      - MYSQL_DATABASE=db_instagram
+      # - MYSQL_USER=user
+      # - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+    networks:
+      - node-api-network
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:2600"
+    volumes:
+      - .:/app
+      - "/app/node-modules"
+    depends_on:
+      - mysql_server
+    networks:
+      - node-api-network
